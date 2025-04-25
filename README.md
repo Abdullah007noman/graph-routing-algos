@@ -16,13 +16,6 @@ An efficient implementation of Dijkstra's algorithm for finding the shortest pat
 
 This repository contains a Python implementation of Dijkstra's algorithm, one of the most fundamental algorithms for finding shortest paths in graphs with non-negative edge weights. The implementation is designed to be both efficient and educational, with step-by-step visualization capabilities to help understand how the algorithm works.
 
-## Features
-
-- **Core Implementation**: Fast and memory-efficient implementation using a priority queue
-- **Step-by-Step Visualization**: Option to see each step of the algorithm's execution
-- **Detailed State Tracking**: Tracks visited nodes, current distances, and priority queue state
-- **Verification Tools**: Tools to verify the algorithm against known examples
-- **Comprehensive Documentation**: Well-documented code with clear explanations
 
 ## Usage
 
