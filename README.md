@@ -172,11 +172,97 @@ When implementing or using Bellman-Ford, watch out for:
 3. **Edge Relaxation Order**: If you're debugging or using the algorithm for educational purposes, be aware that intermediate results depend on the order of edge relaxations
 
 
+# Floyd-Warshall Algorithm Implementation
 
+## Overview
 
+This repository provides an efficient implementation of the Floyd-Warshall algorithm for finding shortest paths between all pairs of vertices in a weighted directed graph. The algorithm handles negative edge weights correctly and can detect negative cycles.
 
+## Features
 
+- **All-Pairs Shortest Paths**: Computes the shortest path between every pair of vertices in a single execution
+- **Negative Edge Support**: Correctly handles graphs with negative edge weights (but no negative cycles)
+- **Path Reconstruction**: Includes functionality to reconstruct the actual path between any two vertices
+- **Iteration Visualization**: Shows how the distance matrix evolves through each iteration
+- **Negative Cycle Detection**: Identifies if the graph contains any negative cycles
 
+## Algorithm Explanation
+
+The Floyd-Warshall algorithm uses dynamic programming to iteratively improve the shortest path estimates. It works by considering whether using each vertex as an intermediate point would create a shorter path between any two vertices.
+
+### Core Concept
+
+The key insight is that if we have the shortest paths using vertices {1, 2, ..., k-1} as intermediate points, we can find the shortest paths using vertices {1, 2, ..., k} by considering:
+
+For each pair of vertices (i,j):
+- Either the shortest path uses vertex k as an intermediate 
+- Or it doesn't use vertex k at all
+
+This gives us the recurrence relation:
+```
+dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+```
+
+### Time & Space Complexity
+
+- **Time Complexity**: O(V³) where V is the number of vertices
+- **Space Complexity**: O(V²) for storing the distance matrix
+
+## Usage
+
+```python
+# Define your graph as an adjacency matrix
+graph = [
+    [0, 3, 8, float('inf'), -4],
+    [float('inf'), 0, 4, 1, 7],
+    [float('inf'), -5, 0, float('inf'), float('inf')],
+    [2, float('inf'), -5, 0, float('inf')],
+    [float('inf'), 7, float('inf'), 6, 0]
+]
+
+# Run the algorithm
+final_dist, next_vertex, iterations = floyd_warshall(graph)
+
+# Get the shortest path from vertex 0 to vertex 3
+path = reconstruct_path(next_vertex, 0, 3)
+```
+
+## Example
+
+The repository includes a complete example based on the graph below:
+
+```
+    2
+   ↗ ↑ ↘
+  3   4   
+ ↗     ↘
+1 → 8 → 3
+ ↘ ↙   ↗
+  -4 5 
+ ↓ ↘ ↙
+5 → 4
+    6
+```
+
+The algorithm computes the shortest distance matrix and provides functionality to reconstruct the shortest path between any two vertices.
+
+## Implementation Details
+
+- **Initialization**: Set direct edge weights in the distance matrix, diagonal to 0, and non-edges to infinity
+- **Iteration**: For each vertex k, update the shortest path between all vertex pairs (i,j)
+- **Path Reconstruction**: The `next` matrix tracks the next vertex to visit on each shortest path
+- **Convergence**: The algorithm converges after at most V iterations
+
+## Visualization
+
+The implementation stores each iteration's distance matrix to visualize how the algorithm progresses. For the example graph, we can observe how the shortest paths evolve through each iteration L^(k).
+
+## Applications
+
+- **Network Routing**: Finding optimal paths in communication networks
+- **Road Navigation**: Computing shortest routes between locations
+- **Transitive Closure**: Determining reachability between vertices
+- **Cycle Detection**: Identifying negative cycles in the graph
 
 ## References
 
