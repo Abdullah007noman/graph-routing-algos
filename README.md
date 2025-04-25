@@ -16,7 +16,21 @@ An efficient implementation of Dijkstra's algorithm for finding the shortest pat
 
 This repository contains a Python implementation of Dijkstra's algorithm, one of the most fundamental algorithms for finding shortest paths in graphs with non-negative edge weights. The implementation is designed to be both efficient and educational, with step-by-step visualization capabilities to help understand how the algorithm works.
 
+## Algorithm Explanation
 
+Dijkstra's algorithm finds the shortest path between a source node and all other nodes in a graph with non-negative weights. It works as follows:
+
+1. Initialize distances to all nodes as infinity except the source node (distance = 0)
+2. Add the source node to a priority queue
+3. While the priority queue is not empty:
+   - Extract the node with the minimum distance
+   - For each neighbor of the extracted node:
+     - Calculate potential new distance through the current node
+     - If this new distance is shorter than the known distance, update it
+     - Add the neighbor to the priority queue with its new distance
+4. Return the distances to all nodes
+
+The time complexity is O((V + E) log V) where V is the number of vertices and E is the number of edges.
 ## Usage
 
 ### Basic Usage
@@ -47,21 +61,7 @@ from dijkstra import run_dijkstra_with_steps
 shortest_distances = run_dijkstra_with_steps(graph, 0)
 ```
 
-## Algorithm Explanation
 
-Dijkstra's algorithm finds the shortest path between a source node and all other nodes in a graph with non-negative weights. It works as follows:
-
-1. Initialize distances to all nodes as infinity except the source node (distance = 0)
-2. Add the source node to a priority queue
-3. While the priority queue is not empty:
-   - Extract the node with the minimum distance
-   - For each neighbor of the extracted node:
-     - Calculate potential new distance through the current node
-     - If this new distance is shorter than the known distance, update it
-     - Add the neighbor to the priority queue with its new distance
-4. Return the distances to all nodes
-
-The time complexity is O((V + E) log V) where V is the number of vertices and E is the number of edges.
 
 ## Example
 
