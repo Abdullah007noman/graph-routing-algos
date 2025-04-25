@@ -1,5 +1,12 @@
 # graph-routing-algos
 
+This repository contains implementation of different algorithms:
+1.  Dijkstra's algorithm
+
+2. Bellman-Ford algorithm
+
+3. Floyd-Warshall algorithm
+   
 # Dijkstra's Algorithm Implementation
 
 An efficient implementation of Dijkstra's algorithm for finding the shortest paths from a source node to all other nodes in a weighted directed graph.
