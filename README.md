@@ -82,4 +82,103 @@ The example traces through each step of the algorithm, showing:
 - The final shortest path tree
 
 
+# Bellman-Ford Algorithm Implementation
+
+## Overview
+
+This repository contains a Python implementation of the Bellman-Ford algorithm for finding shortest paths in a weighted directed graph. The algorithm is particularly valuable because it can handle graphs with negative edge weights and can detect negative cycles, unlike Dijkstra's algorithm.
+The Bellman-Ford algorithm was developed by Richard Bellman and Lester Ford Jr. It computes shortest paths from a single source vertex to all other vertices in a weighted digraph. The main advantage over simpler algorithms like Dijkstra's is its ability to handle negative edge weights.
+
+## Algorithm Details
+
+### Time and Space Complexity
+- **Time Complexity**: O(V×E) where V is the number of vertices and E is the number of edges
+- **Space Complexity**: O(V) for storing distances and predecessors
+
+### Key Steps
+1. Initialize distances (source vertex to 0, all others to infinity)
+2. Relax all edges |V|-1 times
+3. Check for negative-weight cycles
+
+### Edge Relaxation
+The core operation in Bellman-Ford is edge relaxation: for an edge (u,v) with weight w, if `distance[u] + w < distance[v]`, then update `distance[v] = distance[u] + w` and set u as the predecessor of v.
+
+## Implementation Notes
+
+This repository includes two implementations:
+
+1. **Standard Bellman-Ford**: A straightforward implementation that processes edges in arbitrary order
+2. **Ordered Bellman-Ford**: A modified version that processes edges in a specified order, useful for educational purposes and debugging
+
+### Important Considerations
+
+- **Edge Processing Order**: The final shortest paths are independent of edge processing order, but intermediate results after each pass depend on this order
+- **Negative Edges vs. Negative Cycles**: The algorithm handles negative edges correctly but will report if a negative cycle exists
+- **Path Reconstruction**: Included utility for reconstructing the shortest path from source to any destination using the predecessor information
+
+## Example
+
+The implementation includes an example based on the graph shown in the algorithm visualization. This graph has:
+- 5 vertices: s (source), t, x, y, z
+- 10 edges, including negative edges (t→y: -4, t→z: -2, x→t: -2)
+
+After running the algorithm, we get the shortest paths from source 's' to all other vertices:
+- s→y→t = 2
+- s→t→z→x = 4
+- s→y = 7
+- s→t→z = 2
+
+## Usage
+
+```python
+# Define your graph as an adjacency list with edge weights
+graph = {
+    's': {'t': 6, 'y': 7},
+    't': {'x': 5, 'y': -4, 'z': -2},
+    'y': {'z': 9, 't': 8},
+    'x': {'t': -2},
+    'z': {'x': 7, 's': 2}
+}
+
+# Run the Bellman-Ford algorithm
+source = 's'
+distances, predecessors, has_negative_cycle = bellman_ford(graph, source)
+
+# Print results
+print(f"Shortest distances from {source}:")
+for vertex, distance in distances.items():
+    print(f"{vertex}: {distance}")
+
+# Reconstruct a specific path
+path = reconstruct_path(predecessors, source, 'x')
+print(f"Path from {source} to x: {' → '.join(path)}")
+```
+
+## Visualization
+
+The repository includes visualizations showing how the algorithm progresses through iterations:
+1. **Initial State**: All vertices (except source) have distance = ∞
+2. **Intermediate States**: After each pass of edge relaxations, showing how distances improve
+3. **Final State**: The optimal distances and predecessors
+
+The visualization demonstrates how negative edges can lead to path improvements in later iterations, highlighting why multiple passes are necessary.
+
+## Edge Cases and Debugging
+
+When implementing or using Bellman-Ford, watch out for:
+
+1. **Detecting Negative Cycles**: The algorithm will identify if the graph contains any negative-weight cycles reachable from the source
+2. **Unreachable Vertices**: Vertices not reachable from the source will maintain a distance of infinity
+3. **Edge Relaxation Order**: If you're debugging or using the algorithm for educational purposes, be aware that intermediate results depend on the order of edge relaxations
+
+
+
+
+
+
+
+
+## References
+
+- Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). Introduction to Algorithms (3rd ed.). MIT Press.
 
