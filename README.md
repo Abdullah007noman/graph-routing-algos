@@ -11,7 +11,6 @@ This repository contains implementation of different algorithms:
 
 An efficient implementation of Dijkstra's algorithm for finding the shortest paths from a source node to all other nodes in a weighted directed graph.
 
-![Dijkstra Algorithm Visualization](https://github.com/yourusername/dijkstra-algorithm/raw/main/images/dijkstra_stages.png)
 
 ## Overview
 
@@ -73,9 +72,8 @@ The time complexity is O((V + E) log V) where V is the number of vertices and E 
 
 ## Example
 
-The repository includes a specific example that demonstrates how Dijkstra's algorithm processes a graph step-by-step, as illustrated in the included images:
+The repository includes a specific example that demonstrates how Dijkstra's algorithm processes a graph step-by-step, as illustrated in the included image in the repository:
 
-![Dijkstra's Algorithm Steps](https://github.com/yourusername/dijkstra-algorithm/raw/main/images/dijkstra_steps.png)
 
 The example traces through each step of the algorithm, showing:
 - Which nodes are visited
@@ -83,14 +81,5 @@ The example traces through each step of the algorithm, showing:
 - The contents of the priority queue
 - The final shortest path tree
 
-## Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/dijkstra-algorithm.git
-
-# Navigate to the directory
-cd dijkstra-algorithm
-
-```
 
